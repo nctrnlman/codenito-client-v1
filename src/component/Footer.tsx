@@ -9,7 +9,7 @@ import logo from "../assets/logo/logo-light.png";
 function Footer() {
   return (
     <div>
-      <footer className="p-10 bg-black text-white flex justify-around">
+      <footer className="p-10 bg-[#151D20] text-white flex justify-around">
         <aside>
           <img src={logo} alt="" />
           <p className="pt-4">
@@ -28,9 +28,9 @@ function Footer() {
         <nav className="mt-4">
           <header className="text-lg font-semibold">Company</header>
           <a className="block py-1 hover:underline">About us</a>
+          <a className="block py-1 hover:underline">Portfolio</a>
+          <a className="block py-1 hover:underline">Review</a>
           <a className="block py-1 hover:underline">Contact</a>
-          <a className="block py-1 hover:underline">Jobs</a>
-          <a className="block py-1 hover:underline">Press kit</a>
         </nav>
         <nav className="mt-4 ">
           <header className="text-lg font-semibold ">Social</header>

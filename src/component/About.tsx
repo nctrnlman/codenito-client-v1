@@ -2,7 +2,7 @@ import webDev from "../assets/about/web-dev.jpg";
 import webMain from "../assets/about/web-main.jpg";
 import freelance from "../assets/about/freelance-dev.jpg";
 import uiux from "../assets/about/uixux.jpg";
-import logo from "../assets/logo/logo-light.png";
+import logo from "../assets/logo/logo-dark.png";
 
 function About() {
   const cardData = [
@@ -37,7 +37,7 @@ function About() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#DCDCDC] flex items-center justify-center mx-auto">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center mx-auto">
       <div className="flex flex-col gap-8 ">
         <div className="flex flex-col gap-6 max-w-7xl mx-auto text-center">
           <h1 className="text-5xl font-bold r mt-8">

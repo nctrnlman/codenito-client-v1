@@ -1,5 +1,8 @@
 import { useRef, useEffect } from "react";
-import img from "../assets/about/uixux.jpg";
+import ai from "../assets/portfolio/ai.png";
+import hukum from "../assets/portfolio/hukum.png";
+import mylaw from "../assets/portfolio/mylaw.png";
+import maa from "../assets/portfolio/maa.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,54 +11,38 @@ function Portfolio() {
   // Sample portfolio data
   const portfolioItems = [
     {
-      title: "Codenito Website",
-      imageUrl: img,
+      title: "MyLaw Website",
+      imageUrl: mylaw,
       description:
         "Explore our company website showcasing our services, projects, and expertise.",
-      author: {
-        name: "Codenito Team",
-        avatarUrl: "/img/codenito-logo.jpg",
-      },
-      date: "Jan 22, 2024",
+
       websiteLink: "https://www.codenito.com",
     },
     // Add more portfolio items here
     {
-      title: "Codenito Website",
-      imageUrl: img,
+      title: "AI Image Generator ",
+      imageUrl: ai,
       description:
         "Explore our company website showcasing our services, projects, and expertise.",
-      author: {
-        name: "Codenito Team",
-        avatarUrl: "/img/codenito-logo.jpg",
-      },
-      date: "Jan 22, 2024",
+
       websiteLink: "https://www.codenito.com",
     },
     // Add more portfolio items here
     {
-      title: "Codenito Website",
-      imageUrl: img,
+      title: "E-Hukum UI/UX Design",
+      imageUrl: hukum,
       description:
         "Explore our company website showcasing our services, projects, and expertise.",
-      author: {
-        name: "Codenito Team",
-        avatarUrl: "/img/codenito-logo.jpg",
-      },
-      date: "Jan 22, 2024",
+
       websiteLink: "https://www.codenito.com",
     },
     // Add more portfolio items here
     {
-      title: "Codenito Website",
-      imageUrl: img,
+      title: "MAA Website",
+      imageUrl: maa,
       description:
         "Explore our company website showcasing our services, projects, and expertise.",
-      author: {
-        name: "Codenito Team",
-        avatarUrl: "/img/codenito-logo.jpg",
-      },
-      date: "Jan 22, 2024",
+
       websiteLink: "https://www.codenito.com",
     },
     // Add more portfolio items here
@@ -70,7 +57,7 @@ function Portfolio() {
     slidesToScroll: 1,
   };
 
-  const YourMenuItemComponent = ({
+  const CardComponent = ({
     title,
     imageUrl,
     description,
@@ -81,25 +68,24 @@ function Portfolio() {
     description: string;
     websiteLink: string;
   }) => (
-    <div className="max-w-sm w-full lg:max-w-full lg:flex mb-8 px-8">
+    <div className="block relative rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 mx-4 overflow-hidden">
+      <img className="rounded-lg" src={imageUrl} alt={title} />
       <div
-        className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-        style={{ backgroundImage: `url(${imageUrl})` }}
-        title={title}
-      ></div>
-      <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-        <div className="mb-8">
-          <div className="text-gray-900 font-bold text-xl mb-2">{title}</div>
-          <p className="text-gray-700 text-base">{description}</p>
-        </div>
+        className="absolute bottom-0 p-6 bg-transparent"
+        style={{ width: "100%", backdropFilter: "blur(10px)" }}
+      >
+        <h5 className="mb-4 text-xl font-medium leading-tight text-white">
+          {title}
+        </h5>
+        <p className="mb-6 text-base text-white">{description}</p>
         {websiteLink && (
           <a
             href={websiteLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 bg-gray-600 w-15 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded"
+            className="bg-black text-white p-3 border-none rounded-md"
           >
-            Visit
+            Visit Website
           </a>
         )}
       </div>
@@ -119,9 +105,9 @@ function Portfolio() {
   }, []);
 
   return (
-    <div className="py-20 flex flex-col  justify-center">
-      <div className="flex flex-col gap-10 max-w-7xl justify-around mx-auto">
-        <div className="text-center">
+    <div className="py-20 flex flex-col justify-center">
+      <div className="flex flex-col gap-10  max-w-7xl mx-auto justify-around">
+        <div className="text-center ">
           <h1 className="text-5xl font-bold">Our Work Portfolio</h1>
           <p className="mt-4">
             Explore our showcase of projects, demonstrating our skills and
@@ -133,7 +119,7 @@ function Portfolio() {
           <Slider ref={sliderRef} {...settings}>
             {portfolioItems.map((portfolioItem, index) => (
               <div key={index}>
-                <YourMenuItemComponent
+                <CardComponent
                   title={portfolioItem.title}
                   imageUrl={portfolioItem.imageUrl}
                   description={portfolioItem.description}

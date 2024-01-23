@@ -1,71 +1,66 @@
-import React, { useState } from "react";
-import { useDrag, useDrop, DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+// import React from 'react';
 
-interface CardProps {
-  title: string;
-  index: number;
-  moveCard: (dragIndex: number, hoverIndex: number) => void;
-}
+const testimonials = [
+  {
+    id: 1,
+    name: "Maria Smantha",
+    role: "Web Developer",
+    image: "https://tecdn.b-cdn.net/img/Photos/Avatars/img%20(1).jpg",
+    content:
+      "As a Web Developer, I was impressed with Codenito's comprehensive web development services. They excel at crafting interactive user interfaces and building robust backend systems. The team's dedication to bringing digital visions to life is truly commendable. I highly recommend their expertise!",
+    ratings: 4,
+  },
+  {
+    id: 2,
+    name: "Lisa Cudrow",
+    role: "Graphic Designer",
+    image: "https://tecdn.b-cdn.net/img/Photos/Avatars/img%20(2).jpg",
+    content:
+      "Codenito's UI/UX design services are top-notch! As a Graphic Designer, I appreciate their commitment to crafting visually stunning and user-friendly interfaces. They truly understand the importance of creating engaging experiences that elevate your digital presence. Working with them has been a pleasure.",
+    ratings: 5,
+  },
+  {
+    id: 3,
+    name: "John Smith",
+    role: "Marketing Specialist",
+    image: "https://tecdn.b-cdn.net/img/Photos/Avatars/img%20(9).jpg",
+    content:
+      "Being a Marketing Specialist, I value a flawless online presence. Codenito's web maintenance services ensure just that. They handle updates, provide excellent support, and perform routine checks to keep websites running smoothly. A reliable partner for maintaining a strong digital presence.",
+    ratings: 3,
+  },
+];
 
-const Card: React.FC<CardProps> = ({ title, index, moveCard }) => {
-  const [{ isDragging }, drag] = useDrag({
-    type: "CARD",
-    item: { title, index },
-    collect: (monitor) => ({
-      isDragging: !!monitor.isDragging(),
-    }),
-  });
-
-  const [, drop] = useDrop({
-    accept: "CARD",
-    hover: (item: any) => {
-      if (item.index !== index) {
-        moveCard(item.index, index);
-        item.index = index;
-      }
-    },
-  });
-
+const Review = () => {
   return (
-    <div
-      ref={(node) => drag(drop(node))}
-      style={{
-        opacity: isDragging ? 0.5 : 1,
-        border: "1px solid #ccc",
-        padding: "10px",
-        margin: "10px",
-        cursor: "move",
-      }}
-    >
-      {title}
-    </div>
-  );
-};
+    <div className="bg-gray-50 min-h-screen flex items-center justify-center  mx-auto">
+      <div className=" text-center md:max-w-xl lg:max-w-7xl">
+        <h3 className="mb-6 text-5xl font-bold text-black">
+          User Experience Journey
+        </h3>
+        <p className="text-lg mb-6 pb-2 md:mb-12 md:pb-0">
+          Why Our Customers Are Extremely Satisfied with Their Experience
+        </p>
 
-interface ReviewProps {}
-
-const Review: React.FC<ReviewProps> = () => {
-  const [cards, setCards] = useState<string[]>(["Card 1", "Card 2", "Card 3"]);
-
-  const moveCard = (dragIndex: number, hoverIndex: number) => {
-    const dragCard = cards[dragIndex];
-    const newCards = [...cards];
-    newCards.splice(dragIndex, 1);
-    newCards.splice(hoverIndex, 0, dragCard);
-    setCards(newCards);
-  };
-
-  return (
-    <DndProvider backend={HTML5Backend}>
-      <div className="min-h-screen">
-        <div>
-          {cards.map((title, index) => (
-            <Card key={index} title={title} index={index} moveCard={moveCard} />
+        <div className="grid gap-10 pt-10 text-center md:grid-cols-3 lg:gap-12">
+          {testimonials.map((testimonial) => (
+            <div key={testimonial.id} className="mb-12 md:mb-0">
+              <div className="mb-6 flex justify-center">
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  className="w-32 rounded-full shadow-lg dark:shadow-black/30"
+                />
+              </div>
+              <h5 className="mb-4 text-xl font-semibold">{testimonial.name}</h5>
+              <h6 className="mb-4 font-semibold text-primary dark:text-primary-500">
+                {testimonial.role}
+              </h6>
+              <p className="mb-4">{testimonial.content}</p>
+            </div>
           ))}
         </div>
       </div>
-    </DndProvider>
+    </div>
   );
 };
 
