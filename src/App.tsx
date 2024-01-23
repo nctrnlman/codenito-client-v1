@@ -5,7 +5,7 @@ import Navbar from "./component/Navbar.tsx";
 function App() {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
       </Routes>
