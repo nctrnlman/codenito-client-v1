@@ -71,7 +71,7 @@ function Portfolio() {
     <div className="block relative rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 mx-4 overflow-hidden">
       <img className="rounded-lg" src={imageUrl} alt={title} />
       <div
-        className="absolute bottom-0 p-6 bg-transparent"
+        className="absolute bottom-0 p-6 bg-[rgba(0,0,0,0.6)]"
         style={{ width: "100%", backdropFilter: "blur(10px)" }}
       >
         <h5 className="mb-4 text-xl font-medium leading-tight text-white">
@@ -83,7 +83,7 @@ function Portfolio() {
             href={websiteLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-black text-white p-3 border-none rounded-md"
+            className="bg-gray-50 text-black p-3 border-none rounded-md"
           >
             Visit Website
           </a>
