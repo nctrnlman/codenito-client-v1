@@ -1,4 +1,3 @@
-import React from "react";
 import webDev from "../assets/about/web-dev.jpg";
 import webMain from "../assets/about/web-main.jpg";
 import freelance from "../assets/about/freelance-dev.jpg";

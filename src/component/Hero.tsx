@@ -1,4 +1,3 @@
-import React from "react";
 import logo from "../assets/logo/logo-dark.png";
 import SpaceBackground from "./SpaceBackground";
 

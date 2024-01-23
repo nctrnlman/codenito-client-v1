@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-// import Home from "./pages/Home";
 import Home from "./pages/HomePage.tsx";
 import Navbar from "./component/Navbar.tsx";
 function App() {
