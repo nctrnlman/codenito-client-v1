@@ -1,24 +1,41 @@
 import { useState, FormEvent } from "react";
 import SpaceBackground from "./SpaceBackground";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Your form submission logic here
-    console.log("Form submitted:", { name, email, message });
+
+    try {
+      await axios.post("https://formspree.io/f/xnqejdev", {
+        name,
+        email,
+        message,
+      });
+      toast.success("Email sent successfully!", { position: "top-right" });
+      setName("");
+      setEmail("");
+      setMessage("");
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to send email. Please try again.", {
+        position: "top-right",
+      });
+    }
   };
 
   return (
     <div id="contact" className="min-h-screen flex flex-col  justify-center">
+      <ToastContainer />
       <div>
         <div className="flex-1 items-center w-3/4 p-6 mx-auto">
-          <h1 className="text-5xl font-bold inline border-b-4 border-grey text-black">
-            Let’s discuss
-          </h1>
+          <h1 className="text-5xl font-bold  text-black">Let’s discuss</h1>
         </div>
         <div className="flex-1 flex items-center justify-center bg-url(<path-to-image>) bg-cover bg-center border border-white rounded-lg backdrop-blur-md relative">
           <SpaceBackground />
