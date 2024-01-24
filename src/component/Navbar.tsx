@@ -92,7 +92,7 @@ const Navbar = () => {
 
         <a
           className="hidden lg:inline-block py-2 px-2  text-sm text-white font-bold rounded-xl transition duration-200"
-          href="https://wa.me/1234567890"
+          href="https://wa.me/6281574434332"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -171,7 +171,7 @@ const Navbar = () => {
             <div className="pt-6 mx-auto justify-center flex">
               <a
                 className="  py-2 px-2  text-sm text-black font-bold rounded-xl transition duration-200"
-                href="https://www.instagram.com/username"
+                href="https://www.instagram.com/codenito.id"
                 rel="noopener noreferrer"
               >
                 <FontAwesomeIcon icon={faInstagram} size="lg" />
@@ -187,7 +187,7 @@ const Navbar = () => {
 
               <a
                 className="py-2 px-2  text-sm text-black font-bold rounded-xl transition duration-200"
-                href="https://wa.me/1234567890"
+                href="https://wa.me/6281574434332"
                 target="_blank"
                 rel="noopener noreferrer"
               >
