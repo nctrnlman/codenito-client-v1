@@ -1,8 +1,8 @@
 import { useRef, useEffect } from "react";
 import ai from "../assets/portfolio/ai.png";
-import hukum from "../assets/portfolio/hukum.png";
+// import hukum from "../assets/portfolio/hukum.png";
 import mylaw from "../assets/portfolio/mylaw.png";
-import maa from "../assets/portfolio/maa.png";
+// import maa from "../assets/portfolio/maa.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
