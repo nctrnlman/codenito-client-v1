@@ -1,5 +1,6 @@
 import { useState } from "react";
 import logo from "../assets/logo/favicon.png";
+import logoDark from "../assets/logo/icon-dark.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInstagram,
@@ -10,8 +11,22 @@ import {
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const scrollTo = (elementId: string) => {
+    const element = document.getElementById(elementId);
+    if (element) {
+      if (menuOpen) {
+        closeMenu();
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
   };
 
   return (
@@ -40,55 +55,43 @@ const Navbar = () => {
             menuOpen ? "" : "hidden"
           }`}
         >
-          <li>
-            <a className="text-sm text-white hover:text-gray-500" href="#">
-              Home
-            </a>
+          <li className="text-sm text-white hover:text-gray-500 cursor-pointer">
+            <div onClick={() => scrollTo("home")}>Home</div>
           </li>
-          <li>
-            <a className="text-sm text-white " href="#">
-              About Us
-            </a>
+          <li className="text-sm text-white hover:text-gray-500 cursor-pointer">
+            <div onClick={() => scrollTo("about")}>About Us</div>
           </li>
-          <li>
-            <a className="text-sm text-white hover:text-gray-500" href="#">
-              Portfolio
-            </a>
+          <li className="text-sm text-white hover:text-gray-500 cursor-pointer">
+            <div onClick={() => scrollTo("portfolio")}>Portfolio</div>
           </li>
-          <li>
-            <a className="text-sm text-white hover:text-gray-500" href="#">
-              Review
-            </a>
+          <li className="text-sm text-white hover:text-gray-500 cursor-pointer">
+            <div onClick={() => scrollTo("review")}>Review</div>
           </li>
-          <li>
-            <a className="text-sm text-white hover:text-gray-500" href="#">
-              Contact
-            </a>
+          <li className="text-sm text-white hover:text-gray-500 cursor-pointer">
+            <div onClick={() => scrollTo("contact")}>Contact</div>
           </li>
         </ul>
         <a
           className="hidden lg:inline-block lg:ml-auto  py-2 px-2  text-sm text-white font-bold rounded-xl transition duration-200"
-          href="https://www.instagram.com/username" // Ganti dengan tautan profil Instagram Anda
+          href="https://www.instagram.com/username"
           target="_blank"
           rel="noopener noreferrer"
         >
           <FontAwesomeIcon icon={faInstagram} size="lg" />
         </a>
 
-        {/* Ganti tombol "Sign Up" dengan ikon LinkedIn */}
         <a
           className="hidden lg:inline-block py-2 px-2 text-sm text-white font-bold rounded-xl transition duration-200"
-          href="https://www.linkedin.com/in/username" // Ganti dengan tautan profil LinkedIn Anda
+          href="https://www.linkedin.com/in/username"
           target="_blank"
           rel="noopener noreferrer"
         >
           <FontAwesomeIcon icon={faLinkedin} size="lg" />
         </a>
 
-        {/* Tambahkan tombol WhatsApp */}
         <a
           className="hidden lg:inline-block py-2 px-2  text-sm text-white font-bold rounded-xl transition duration-200"
-          href="https://wa.me/1234567890" // Ganti dengan tautan WhatsApp Anda
+          href="https://wa.me/1234567890"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -100,9 +103,9 @@ const Navbar = () => {
         <nav className="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
           <div className="flex items-center mb-8">
             <a className="mr-auto text-3xl font-bold leading-none" href="#">
-              <img src={logo} alt="logo" className="h-12" />
+              <img src={logoDark} alt="logo" className="h-12" />
             </a>
-            <button className="navbar-close">
+            <button onClick={closeMenu} className="navbar-close">
               <svg
                 className="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500"
                 xmlns="http://www.w3.org/2000/svg"
@@ -121,42 +124,42 @@ const Navbar = () => {
           </div>
           <div>
             <ul>
-              <li className="mb-1">
+              <li className="mb-1 sm:mb-0">
                 <a
-                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                  href="#"
+                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-gray-50 hover:text-gray-600 rounded"
+                  onClick={() => scrollTo("home")}
                 >
                   Home
                 </a>
               </li>
-              <li className="mb-1">
+              <li className="mb-1 sm:mb-0">
                 <a
-                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                  href="#"
+                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-gray-50 hover:text-gray-600 rounded"
+                  onClick={() => scrollTo("about")}
                 >
                   About Us
                 </a>
               </li>
-              <li className="mb-1">
+              <li className="mb-1 sm:mb-0">
                 <a
-                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                  href="#"
+                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-gray-50 hover:text-gray-600 rounded"
+                  onClick={() => scrollTo("portfolio")}
                 >
                   Portfolio
                 </a>
               </li>
-              <li className="mb-1">
+              <li className="mb-1 sm:mb-0">
                 <a
-                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                  href="#"
+                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-gray-50 hover:text-gray-600 rounded"
+                  onClick={() => scrollTo("review")}
                 >
                   Review
                 </a>
               </li>
-              <li className="mb-1">
+              <li className="mb-1 sm:mb-0">
                 <a
-                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                  href="#"
+                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-gray-50 hover:text-gray-600 rounded"
+                  onClick={() => scrollTo("contact")}
                 >
                   Contact
                 </a>
@@ -164,22 +167,34 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="mt-auto">
-            <div className="pt-6">
+            <div className="pt-6 mx-auto justify-center flex">
               <a
-                className="block px-4 py-3 mb-3  text-xs text-center font-semibold leading-none bg-gray-50 hover:bg-gray-100 rounded-xl"
-                href="#"
+                className="  py-2 px-2  text-sm text-black font-bold rounded-xl transition duration-200"
+                href="https://www.instagram.com/username"
+                rel="noopener noreferrer"
               >
-                Sign in
+                <FontAwesomeIcon icon={faInstagram} size="lg" />
               </a>
               <a
-                className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-blue-600 hover:bg-blue-700  rounded-xl"
-                href="#"
+                className=" py-2 px-2 text-sm text-black font-bold rounded-xl transition duration-200"
+                href="https://www.linkedin.com/in/username"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Sign Up
+                <FontAwesomeIcon icon={faLinkedin} size="lg" />
+              </a>
+
+              <a
+                className="py-2 px-2  text-sm text-black font-bold rounded-xl transition duration-200"
+                href="https://wa.me/1234567890"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon icon={faWhatsapp} size="lg" />
               </a>
             </div>
             <p className="my-4 text-xs text-center text-gray-400">
-              <span>Copyright © 2021</span>
+              <span>Copyright © 2023</span>
             </p>
           </div>
         </nav>

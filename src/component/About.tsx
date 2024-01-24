@@ -37,23 +37,26 @@ function About() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center mx-auto">
-      <div className="flex flex-col gap-8 ">
-        <div className="flex flex-col gap-6 max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl font-bold r mt-8">
+    <div
+      id="about"
+      className="min-h-screen bg-gray-50 flex items-center justify-center mx-auto"
+    >
+      <div className="flex flex-col gap-8  ">
+        <div className="flex flex-col gap-6 max-w-7xl mx-auto text-center px-4">
+          <h1 className="md:text-5xl text-3xl  font-bold r mt-8 items-center  ">
             Welcome to
             <img
-              src={logo} // Replace with the actual path to your logo image
+              src={logo}
               alt="Codenito Logo"
-              className="inline ml-4" // Adjust the margin as needed
+              className="inline ml-4 md:w-[40%] w-[55%]"
             />
           </h1>
-          <h4 className="text-xl pt-4">
+          <h4 className="md:text-xl md:pt-4 pt-2">
             We leverage cutting-edge technology to empower businesses with
             superior user experiences. Our experienced team ensures industry
             leadership and data security, creating a new digital landscape where
             code meets incognito. Explore the Possibilities with{" "}
-            <span className="font-bold">Codenito</span>
+            <span className="font-bold">Codenito.</span>
           </h4>
         </div>
 
@@ -61,10 +64,10 @@ function About() {
           {cardData.map((card, index) => (
             <div
               key={index}
-              className="max-w-sm m-4 rounded overflow-hidden shadow-lg bg-white"
+              className="max-w-sm m-4 rounded overflow-hidden shadow-lg bg-white transform transition-transform ease-in-out hover:scale-105 cursor-pointer"
             >
               <img
-                className="w-full h-48 object-cover" // Set a fixed height with zoom effect
+                className="w-full h-48 object-cover"
                 src={card.image}
                 alt={`Card ${index + 1}`}
               />

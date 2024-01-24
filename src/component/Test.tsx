@@ -7,9 +7,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
 
-function Portfolio() {
-  // Sample portfolio data
-  const portfolioItems = [
+function Test() {
+  // Sample Test data
+  const TestItems = [
     {
       title: "MyLaw Website",
       imageUrl: mylaw,
@@ -18,7 +18,7 @@ function Portfolio() {
 
       websiteLink: "https://www.codenito.com",
     },
-    // Add more portfolio items here
+    // Add more Test items here
     {
       title: "AI Image Generator ",
       imageUrl: ai,
@@ -27,25 +27,9 @@ function Portfolio() {
 
       websiteLink: "https://www.codenito.com",
     },
-    // Add more portfolio items here
-    {
-      title: "E-Hukum UI/UX Design",
-      imageUrl: hukum,
-      description:
-        "Explore our company website showcasing our services, projects, and expertise.",
+    // Add more Test items here
 
-      websiteLink: "https://www.codenito.com",
-    },
-    // Add more portfolio items here
-    {
-      title: "MAA Website",
-      imageUrl: maa,
-      description:
-        "Explore our company website showcasing our services, projects, and expertise.",
-
-      websiteLink: "https://www.codenito.com",
-    },
-    // Add more portfolio items here
+    // Add more Test items here
     // ...
   ];
 
@@ -70,7 +54,7 @@ function Portfolio() {
     websiteLink: string;
   }) => (
     <div
-      id="portfolio"
+      id="Test"
       className="block relative rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 mx-4 overflow-hidden"
     >
       <img className="rounded-lg" src={imageUrl} alt={title} />
@@ -111,23 +95,15 @@ function Portfolio() {
   return (
     <div className="py-20 flex flex-col justify-cente max-w-7xlr">
       <div className="flex flex-col gap-10  max-w-7xl mx-auto justify-around">
-        <div className="text-center ">
-          <h1 className="text-5xl font-bold">Our Work Portfolio</h1>
-          <p className="mt-4">
-            Explore our showcase of projects, demonstrating our skills and
-            expertise.
-          </p>
-        </div>
-
         <div className="mt-4 bg-slate-600">
           <Slider ref={sliderRef} {...settings}>
-            {portfolioItems.map((portfolioItem, index) => (
+            {TestItems.map((TestItem, index) => (
               <div key={index}>
                 <CardComponent
-                  title={portfolioItem.title}
-                  imageUrl={portfolioItem.imageUrl}
-                  description={portfolioItem.description}
-                  websiteLink={portfolioItem.websiteLink}
+                  title={TestItem.title}
+                  imageUrl={TestItem.imageUrl}
+                  description={TestItem.description}
+                  websiteLink={TestItem.websiteLink}
                 />
               </div>
               // <h1>asdasdasdas</h1>
@@ -139,4 +115,4 @@ function Portfolio() {
   );
 }
 
-export default Portfolio;
+export default Test;

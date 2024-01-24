@@ -13,7 +13,7 @@ function Contact() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col  justify-center">
+    <div id="contact" className="min-h-screen flex flex-col  justify-center">
       <div>
         <div className="flex-1 items-center w-3/4 p-6 mx-auto">
           <h1 className="text-5xl font-bold inline border-b-4 border-grey text-black">

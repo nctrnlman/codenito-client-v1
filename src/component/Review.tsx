@@ -32,7 +32,10 @@ const testimonials = [
 
 const Review = () => {
   return (
-    <div className="bg-gray-50 min-h-screen flex items-center justify-center  mx-auto">
+    <div
+      id="review"
+      className="bg-gray-50 min-h-screen flex items-center justify-center  mx-auto"
+    >
       <div className=" text-center md:max-w-xl lg:max-w-7xl">
         <h3 className="mb-6 text-5xl font-bold text-black">
           User Experience Journey
