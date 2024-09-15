@@ -1,6 +1,6 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./pages/HomePage.tsx";
-import Navbar from "./component/Navbar.tsx";
+import Navbar from "./components/Navbar.tsx";
 import Dashboard from "./pages/internal/dashboard/Dashboard.tsx";
 import Ticketing from "./pages/internal/ticketing/Ticketing.tsx";
 import ClientManagement from "./pages/internal/clientManagement/ClientManagement.tsx";
