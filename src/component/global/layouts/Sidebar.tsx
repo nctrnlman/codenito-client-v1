@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import logoDark from "../../assets/logo/logo-dark.png";
+import logoDark from "../../../assets/logo/logo-dark.png";
 
 const Sidebar: React.FC = () => {
   const location = useLocation();
