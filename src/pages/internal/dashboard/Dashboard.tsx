@@ -31,7 +31,7 @@ const Dashboard: React.FC = () => {
 
       <section className="mt-4 p-4 bg-gray-100 rounded-lg">
         <h2 className="pb-2 font-semibold">Our Services</h2>
-        <ul className="list-disc list-none list-inside space-y-2 pt-2">
+        <ul className="list-none list-inside space-y-2 pt-2">
           <li>
             <h3 className="font-semibold">IT Consulting</h3>
             <p>

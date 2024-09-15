@@ -5,17 +5,7 @@ import { login } from "../../../services/authService";
 import logoDark from "../../../assets/logo/favicon.png";
 import { saveUser } from "../../../utils/indexedDBHelper";
 import { toast } from "react-toastify";
-import ButtonOutline from "../../../component/global/buttons/ButtonOutline";
-
-interface LoginResponse {
-  token: string;
-  user: {
-    _id: string;
-    name: string;
-    email: string;
-    role: string;
-  };
-}
+import ButtonOutline from "../../../components/global/buttons/ButtonOutline";
 
 const LoginPage: React.FC = () => {
   const formik = useFormik({
@@ -26,10 +16,7 @@ const LoginPage: React.FC = () => {
     validationSchema: loginSchema,
     onSubmit: async (values) => {
       try {
-        const response: LoginResponse = await login(
-          values.email,
-          values.password
-        );
+        const response = await login(values.email, values.password);
         localStorage.setItem("token", response.token);
 
         if (response.user) {
@@ -43,12 +30,15 @@ const LoginPage: React.FC = () => {
         }
 
         toast.success(response.message);
-
-        // Redirect to dashboard
-        window.location.href = "/ims/dashboard";
+        // window.location.href = "/ims/dashboard";
       } catch (err) {
-        console.error("Login error:", err.message);
-        toast.error("Login failed. Please check your credentials.");
+        if (err instanceof Error) {
+          console.error("Login error:", err.message);
+          toast.error(err.message);
+        } else {
+          console.error("Unexpected error", err);
+          toast.error("An unexpected error occurred. Please try again.");
+        }
       }
     },
   });
