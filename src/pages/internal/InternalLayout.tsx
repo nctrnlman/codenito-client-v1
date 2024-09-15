@@ -1,6 +1,6 @@
 import React from "react";
-import Sidebar from "../../component/global/Sidebar";
-import Topbar from "../../component/global/Topbar";
+import Sidebar from "../../component/global/layouts/Sidebar";
+import Topbar from "../../component/global/layouts/Topbar";
 
 interface InternalLayoutProps {
   children: React.ReactNode;
