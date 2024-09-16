@@ -1,10 +1,26 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { clearUser } from "../../../utils/indexedDBHelper";
+import { toast } from "react-toastify";
 
 const Topbar: React.FC = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  const navigate = useNavigate();
+
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
+  };
+
+  const handleLogout = async () => {
+    try {
+      localStorage.removeItem("token");
+      toast.success("Success Logout");
+      await clearUser();
+      navigate("/ims/login");
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
   };
 
   return (
@@ -26,11 +42,8 @@ const Topbar: React.FC = () => {
         {dropdownOpen && (
           <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 text-gray-800">
             <a
-              href="#"
               className="block px-4 py-2 text-sm hover:bg-gray-100"
-              onClick={() => {
-                console.log("Logging out...");
-              }}
+              onClick={handleLogout}
             >
               Logout
             </a>
