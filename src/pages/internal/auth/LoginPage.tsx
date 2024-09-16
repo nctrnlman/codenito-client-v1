@@ -17,20 +17,21 @@ const LoginPage: React.FC = () => {
     onSubmit: async (values) => {
       try {
         const response = await login(values.email, values.password);
-        localStorage.setItem("token", response.token);
 
-        if (response.user) {
+        localStorage.setItem("token", response.data.token);
+
+        if (response.data.user) {
           const user = {
-            id: response.user._id,
-            name: response.user.name,
-            email: response.user.email,
-            role: response.user.role,
+            id: response.data.user._id,
+            name: response.data.user.name,
+            email: response.data.user.email,
+            role: response.data.user.role,
           };
           await saveUser(user);
         }
 
         toast.success(response.message);
-        // window.location.href = "/ims/dashboard";
+        window.location.href = "/ims/dashboard";
       } catch (err) {
         if (err instanceof Error) {
           console.error("Login error:", err.message);

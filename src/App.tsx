@@ -6,6 +6,7 @@ import Ticketing from "./pages/internal/ticketing/Ticketing.tsx";
 import ClientManagement from "./pages/internal/clientManagement/ClientManagement.tsx";
 import LoginPage from "./pages/internal/auth/LoginPage.tsx";
 import { ToastContainer } from "react-toastify";
+import ProtectedRoute from "./utils/ProtectedRoute.tsx";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
@@ -17,10 +18,19 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/ims/dashboard" element={<Dashboard />} />
-        <Route path="/ims/ticketing" element={<Ticketing />} />
-        <Route path="/ims/client-management" element={<ClientManagement />} />
         <Route path="/ims/login" element={<LoginPage />} />
+        <Route
+          path="/ims/dashboard"
+          element={<ProtectedRoute element={<Dashboard />} />}
+        />
+        <Route
+          path="/ims/ticketing"
+          element={<ProtectedRoute element={<Ticketing />} />}
+        />
+        <Route
+          path="/ims/client-management"
+          element={<ProtectedRoute element={<ClientManagement />} />}
+        />
       </Routes>
       <ToastContainer />
     </>
