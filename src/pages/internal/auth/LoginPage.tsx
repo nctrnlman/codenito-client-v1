@@ -19,6 +19,7 @@ const LoginPage: React.FC = () => {
         const response = await login(values.email, values.password);
 
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userId", response.data.user._id);
 
         if (response.data.user) {
           const user = {

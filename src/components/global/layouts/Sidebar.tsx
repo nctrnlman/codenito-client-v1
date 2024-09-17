@@ -1,6 +1,11 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import logoDark from "../../../assets/logo/logo-dark.png";
+import {
+  AiOutlineDashboard,
+  AiOutlineUser,
+  AiOutlineTags,
+} from "react-icons/ai";
 
 const Sidebar: React.FC = () => {
   const location = useLocation();
@@ -16,37 +21,40 @@ const Sidebar: React.FC = () => {
         <li>
           <Link
             to="/ims/dashboard"
-            className={`text-gray-800 px-3 py-2 rounded-lg transition-all duration-300 ease-in-out ${
+            className={`text-gray-800 px-3 py-2 flex items-center space-x-2 rounded-lg transition-all duration-300 ease-in-out ${
               location.pathname === "/ims/dashboard"
-                ? "border border-black  font-bold"
+                ? "border border-black font-bold"
                 : "hover:bg-gray-200 hover:font-bold"
             }`}
           >
-            Dashboard
+            <AiOutlineDashboard className="text-xl" />
+            <span>Dashboard</span>
           </Link>
         </li>
         <li>
           <Link
             to="/ims/ticketing"
-            className={`text-gray-800 px-3 py-2 rounded-lg transition-all duration-300 ease-in-out ${
+            className={`text-gray-800 px-3 py-2 flex items-center space-x-2 rounded-lg transition-all duration-300 ease-in-out ${
               location.pathname === "/ims/ticketing"
                 ? "border border-black font-bold"
                 : "hover:bg-gray-200 hover:font-bold"
             }`}
           >
-            Ticketing
+            <AiOutlineTags className="text-xl" />
+            <span>Ticketing</span>
           </Link>
         </li>
         <li>
           <Link
             to="/ims/client-management"
-            className={`text-gray-800 px-3 py-2 rounded-lg transition-all duration-300 ease-in-out ${
+            className={`text-gray-800 px-3 py-2 flex items-center space-x-2 rounded-lg transition-all duration-300 ease-in-out ${
               location.pathname === "/ims/client-management"
                 ? "border border-black font-bold"
                 : "hover:bg-gray-200 hover:font-bold"
             }`}
           >
-            Client Management
+            <AiOutlineUser className="text-xl" />
+            <span>Client Management</span>
           </Link>
         </li>
       </ul>
