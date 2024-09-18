@@ -1,75 +1,82 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import InternalLayout from "../InternalLayout";
-
-interface Meeting {
-  id: string;
-  _id?: string;
-  title: string;
-  date: Date;
-  link?: string;
-}
+import { fetchMeetings, addMeeting, deleteMeeting } from '../../../services/meetingService';
+import { Meeting, NewMeeting } from '../../../types/meetingTypes';
 
 const Calendar: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [meetings, setMeetings] = useState<Meeting[]>([]);
-  const [newMeeting, setNewMeeting] = useState({ title: '', link: '' });
+  const [newMeeting, setNewMeeting] = useState<NewMeeting>({ title: '', date: '', link: '' });
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const fetchMeetings = useCallback(async () => {
+  const fetchMeetingsData = useCallback(async () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.get('/api/meetings', {
-        params: {
-          year: currentDate.getFullYear(),
-          month: currentDate.getMonth() + 1
-        }
-      });
-      
-      let meetingsData = response.data && response.data.meetings ? response.data.meetings : response.data;
-      
-      if (!Array.isArray(meetingsData)) {
-        throw new Error('Invalid response format: expected an array of meetings');
-      }
-      
-      const formattedMeetings = meetingsData.map(meeting => ({
-        ...meeting,
-        id: meeting._id || meeting.id,
-        date: new Date(meeting.date)
-      }));
-      
-      setMeetings(formattedMeetings);
+      const meetingsData = await fetchMeetings(currentDate.getFullYear(), currentDate.getMonth() + 1);
+      setMeetings(meetingsData);
     } catch (error) {
-      console.error('Failed to fetch meetings:', error);
-      setError(error instanceof Error ? error.message : 'An unknown error occurred');
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError('An unknown error occurred');
+      }
       toast.error('Failed to fetch meetings. The calendar will be shown without meetings.');
     } finally {
       setIsLoading(false);
     }
   }, [currentDate]);
-
+  
   useEffect(() => {
-    fetchMeetings();
-  }, [fetchMeetings]);
+    fetchMeetingsData();
+  }, [fetchMeetingsData]);
 
-  const addMeeting = async () => {
+  const formatDate = (date: Date): string => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+    const offset = -date.getTimezoneOffset();
+    const offsetHours = String(Math.floor(Math.abs(offset) / 60)).padStart(2, '0');
+    const offsetMinutes = String(Math.abs(offset) % 60).padStart(2, '0');
+    const offsetSign = offset >= 0 ? '+' : '-';
+    return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.000${offsetSign}${offsetHours}:${offsetMinutes}`;
+  };
+
+  const isSameDay = (date1: Date, date2: Date): boolean => {
+    return date1.getFullYear() === date2.getFullYear() &&
+           date1.getMonth() === date2.getMonth() &&
+           date1.getDate() === date2.getDate();
+  };
+
+  const handleDeleteMeeting = async (meetingId: string) => {
+    try {
+      await deleteMeeting(meetingId);
+      setMeetings(prevMeetings => prevMeetings.filter(meeting => meeting.id !== meetingId));
+      toast.success('Meeting deleted successfully');
+    } catch (error) {
+      console.error('Failed to delete meeting:', error);
+      toast.error('Failed to delete meeting');
+    }
+  };
+
+  const handleAddMeeting = async () => {
     if (!selectedDate) return;
     try {
-      const response = await axios.post('/api/meetings', {
+      const newMeetingData: NewMeeting = {
         title: newMeeting.title,
-        date: selectedDate.toISOString(),
+        date: formatDate(selectedDate),
         link: newMeeting.link
-      });
-      setMeetings(prevMeetings => [...prevMeetings, {
-        ...response.data,
-        date: new Date(response.data.date)
-      }]);
-      setNewMeeting({ title: '', link: '' });
+      };
+      const addedMeeting = await addMeeting(newMeetingData);
+      setMeetings(prevMeetings => [...prevMeetings, addedMeeting]);
+      setNewMeeting({ title: '', date: '', link: '' });
       setIsPopupOpen(false);
       toast.success('Meeting added successfully');
     } catch (error) {
@@ -97,7 +104,7 @@ const Calendar: React.FC = () => {
     for (let day = 1; day <= daysInMonth; day++) {
       const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
       const dayMeetings = meetings.filter(meeting => 
-        new Date(meeting.date).toDateString() === date.toDateString()
+        isSameDay(new Date(meeting.date), date)
       );
       days.push(
         <div 
@@ -159,19 +166,27 @@ const Calendar: React.FC = () => {
                   <div className="mb-4">
                     <h3 className="font-bold mb-2">Meetings on this day:</h3>
                     {meetings.filter(meeting => 
-                      new Date(meeting.date).toDateString() === selectedDate.toDateString()
+                      isSameDay(new Date(meeting.date), selectedDate)
                     ).map(meeting => (
-                      <div key={meeting.id} className="bg-blue-100 p-2 mb-2 rounded">
-                        <div>{meeting.title}</div>
-                        {meeting.link && (
-                          <a href={meeting.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                            Meeting Link
-                          </a>
-                        )}
+                      <div key={meeting.id} className="bg-blue-100 p-2 mb-2 rounded flex justify-between items-center">
+                        <div>
+                          <div>{meeting.title}</div>
+                          {meeting.link && (
+                            <a href={meeting.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                              Meeting Link
+                            </a>
+                          )}
+                        </div>
+                        <button
+                          onClick={() => handleDeleteMeeting(meeting.id)}
+                          className="bg-red-500 text-white px-2 py-1 rounded text-sm"
+                        >
+                          Delete
+                        </button>
                       </div>
                     ))}
                     {meetings.filter(meeting => 
-                      new Date(meeting.date).toDateString() === selectedDate.toDateString()
+                      isSameDay(new Date(meeting.date), selectedDate)
                     ).length === 0 && (
                       <div className="text-gray-500">No meetings scheduled for this day.</div>
                     )}
@@ -203,7 +218,7 @@ const Calendar: React.FC = () => {
                   Close
                 </button>
                 <button 
-                  onClick={addMeeting}
+                  onClick={handleAddMeeting}
                   disabled={!selectedDate || !newMeeting.title}
                   className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
                 >
