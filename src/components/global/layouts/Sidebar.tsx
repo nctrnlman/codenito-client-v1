@@ -57,6 +57,19 @@ const Sidebar: React.FC = () => {
             <span>Client Management</span>
           </Link>
         </li>
+        <li>
+          <Link
+            to="/ims/calendar"
+            className={`text-gray-800 px-3 py-2 flex items-center space-x-2 rounded-lg transition-all duration-300 ease-in-out ${
+              location.pathname === "/ims/calendar"
+                ? "border border-black font-bold"
+                : "hover:bg-gray-200 hover:font-bold"
+            }`}
+          >
+            <AiOutlineUser className="text-xl" />
+            <span>Calendar</span>
+          </Link>
+        </li>
       </ul>
     </div>
   );
