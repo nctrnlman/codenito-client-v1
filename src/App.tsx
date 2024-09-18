@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar.tsx";
 import Dashboard from "./pages/internal/dashboard/Dashboard.tsx";
 import Ticketing from "./pages/internal/ticketing/Ticketing.tsx";
 import ClientManagement from "./pages/internal/clientManagement/ClientManagement.tsx";
+import Calendar from "./pages/internal/calendar/Calendar.tsx";
 import LoginPage from "./pages/internal/auth/LoginPage.tsx";
 import { ToastContainer } from "react-toastify";
 import ProtectedRoute from "./utils/ProtectedRoute.tsx";
@@ -30,6 +31,10 @@ function App() {
         <Route
           path="/ims/client-management"
           element={<ProtectedRoute element={<ClientManagement />} />}
+        />
+        <Route
+          path="/ims/calendar"
+          element={<ProtectedRoute element={<Calendar />} />}
         />
       </Routes>
       <ToastContainer />

@@ -5,6 +5,7 @@ import {
   AiOutlineDashboard,
   AiOutlineUser,
   AiOutlineTags,
+  AiOutlineCalendar,
 } from "react-icons/ai";
 
 const Sidebar: React.FC = () => {
@@ -55,6 +56,19 @@ const Sidebar: React.FC = () => {
           >
             <AiOutlineUser className="text-xl" />
             <span>Client Management</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/ims/calendar"
+            className={`text-gray-800 px-3 py-2 flex items-center space-x-2 rounded-lg transition-all duration-300 ease-in-out ${
+              location.pathname === "/ims/calendar"
+                ? "border border-black font-bold"
+                : "hover:bg-gray-200 hover:font-bold"
+            }`}
+          >
+            <AiOutlineCalendar className="text-xl" />
+            <span>Calendar</span>
           </Link>
         </li>
       </ul>
