@@ -5,6 +5,7 @@ import {
   AiOutlineDashboard,
   AiOutlineUser,
   AiOutlineTags,
+  AiOutlineCalendar,
 } from "react-icons/ai";
 
 const Sidebar: React.FC = () => {
@@ -66,7 +67,7 @@ const Sidebar: React.FC = () => {
                 : "hover:bg-gray-200 hover:font-bold"
             }`}
           >
-            <AiOutlineUser className="text-xl" />
+            <AiOutlineCalendar className="text-xl" />
             <span>Calendar</span>
           </Link>
         </li>
