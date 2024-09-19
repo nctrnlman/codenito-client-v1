@@ -6,6 +6,7 @@ import {
   AiOutlineUser,
   AiOutlineTags,
   AiOutlineCalendar,
+  AiOutlinePaperClip,
 } from "react-icons/ai";
 
 const Sidebar: React.FC = () => {
@@ -69,6 +70,19 @@ const Sidebar: React.FC = () => {
           >
             <AiOutlineCalendar className="text-xl" />
             <span>Calendar</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/ims/sticky-notes"
+            className={`text-gray-800 px-3 py-2 flex items-center space-x-2 rounded-lg transition-all duration-300 ease-in-out ${
+              location.pathname === "/ims/sticky-notes"
+                ? "border border-black font-bold"
+                : "hover:bg-gray-200 hover:font-bold"
+            }`}
+          >
+            <AiOutlinePaperClip className="text-xl" />
+            <span>Notes</span>
           </Link>
         </li>
       </ul>
