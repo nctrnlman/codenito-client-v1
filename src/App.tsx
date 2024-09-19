@@ -6,6 +6,7 @@ import Ticketing from "./pages/internal/ticketing/Ticketing.tsx";
 import ClientManagement from "./pages/internal/clientManagement/ClientManagement.tsx";
 import Calendar from "./pages/internal/calendar/Calendar.tsx";
 import LoginPage from "./pages/internal/auth/LoginPage.tsx";
+import StickyNotes from "./pages/internal/notes/StickyNotes.tsx";
 import { ToastContainer } from "react-toastify";
 import ProtectedRoute from "./utils/ProtectedRoute.tsx";
 import "react-toastify/dist/ReactToastify.css";
@@ -35,6 +36,10 @@ function App() {
         <Route
           path="/ims/calendar"
           element={<ProtectedRoute element={<Calendar />} />}
+        />
+        <Route
+          path="/ims/sticky-notes"
+          element={<ProtectedRoute element={<StickyNotes />} />}
         />
       </Routes>
       <ToastContainer />
