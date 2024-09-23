@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logoDark from "../../../assets/logo/logo-dark.png";
 import {
@@ -7,10 +7,17 @@ import {
   AiOutlineTags,
   AiOutlineCalendar,
   AiOutlinePaperClip,
+  AiOutlineDown,
+  AiOutlineRight,
 } from "react-icons/ai";
 
 const Sidebar: React.FC = () => {
   const location = useLocation();
+  const [clientManagementOpen, setClientManagementOpen] = useState(false);
+
+  const toggleClientManagement = () => {
+    setClientManagementOpen(!clientManagementOpen);
+  };
 
   return (
     <div className="fixed top-0 left-0 w-64 h-screen my-2 mx-4 rounded-3xl bg-white border border-black p-4 shadow-lg">
@@ -47,17 +54,72 @@ const Sidebar: React.FC = () => {
           </Link>
         </li>
         <li>
-          <Link
-            to="/ims/client-management"
-            className={`text-gray-800 px-3 py-2 flex items-center space-x-2 rounded-lg transition-all duration-300 ease-in-out ${
-              location.pathname === "/ims/client-management"
+          <div
+            className={`text-gray-800 px-3 py-2 flex items-center justify-between rounded-lg transition-all duration-300 ease-in-out cursor-pointer ${
+              location.pathname.startsWith("/ims/client-management")
                 ? "border border-black font-bold"
                 : "hover:bg-gray-200 hover:font-bold"
             }`}
+            onClick={toggleClientManagement}
           >
-            <AiOutlineUser className="text-xl" />
-            <span>Client Management</span>
-          </Link>
+            <div className="flex items-center space-x-2">
+              <AiOutlineUser className="text-xl" />
+              <span>Client Management</span>
+            </div>
+            {clientManagementOpen ? <AiOutlineDown /> : <AiOutlineRight />}
+          </div>
+          {clientManagementOpen && (
+            <ul className="ml-6 mt-2 space-y-2">
+              <li>
+                <Link
+                  to="/ims/client-management/list"
+                  className={`text-gray-800 px-3 py-2 flex items-center space-x-2 rounded-lg transition-all duration-300 ease-in-out ${
+                    location.pathname === "/ims/client-management/list"
+                      ? "border border-black font-bold"
+                      : "hover:bg-gray-200 hover:font-bold"
+                  }`}
+                >
+                  <span>Client List</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/ims/client-management/add"
+                  className={`text-gray-800 px-3 py-2 flex items-center space-x-2 rounded-lg transition-all duration-300 ease-in-out ${
+                    location.pathname === "/ims/client-management/add"
+                      ? "border border-black font-bold"
+                      : "hover:bg-gray-200 hover:font-bold"
+                  }`}
+                >
+                  <span>Add Client</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/ims/client-management/reports"
+                  className={`text-gray-800 px-3 py-2 flex items-center space-x-2 rounded-lg transition-all duration-300 ease-in-out ${
+                    location.pathname === "/ims/client-management/reports"
+                      ? "border border-black font-bold"
+                      : "hover:bg-gray-200 hover:font-bold"
+                  }`}
+                >
+                  <span>Reports</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/ims/client-management/invoice"
+                  className={`text-gray-800 px-3 py-2 flex items-center space-x-2 rounded-lg transition-all duration-300 ease-in-out ${
+                    location.pathname === "/ims/client-management/invoice"
+                      ? "border border-black font-bold"
+                      : "hover:bg-gray-200 hover:font-bold"
+                  }`}
+                >
+                  <span>Invoice Generator</span>
+                </Link>
+              </li>
+            </ul>
+          )}
         </li>
         <li>
           <Link
