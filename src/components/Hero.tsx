@@ -1,4 +1,5 @@
-import logo from "../assets/logo/logo-dark.png";
+// import logo from "../assets/logo/logo-dark.png
+import logoKape from "../assets/logo/logoKape.png";
 import SpaceBackground from "./SpaceBackground";
 
 function Hero() {
@@ -8,7 +9,7 @@ function Hero() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col gap-4 ">
           {/* logo */}
-          <img src={logo} alt="codenito logo" className="md:w-[40%] w-[70%]" />
+          <img src={logoKape} alt="codenito logo" className="md:w-[30%] w-[30%]" />
           {/* kalimat */}
           <h1 className="md:text-5xl text-3xl font-bold">
             Elevate Your Digital Presence with Expert IT Consulting

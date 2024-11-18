@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logoDark from "../../../assets/logo/logo-dark.png";
+// import logoDark from "../../../assets/logo/logo-dark.png";
+import logoKape from "../../../assets/logo/logoKape.png";
 import {
   AiOutlineDashboard,
   AiOutlineUser,
@@ -23,7 +24,7 @@ const Sidebar: React.FC = () => {
     <div className="fixed top-0 left-0 w-64 h-screen my-2 mx-4 rounded-3xl bg-white border border-black p-4 shadow-lg">
       <section className="mb-10 flex justify-center">
         <a className="text-3xl font-bold leading-none" href="#">
-          <img src={logoDark} alt="logo" className="h-10" />
+          <img src={logoKape} alt="logo" className="h-10" />
         </a>
       </section>
       <ul className="space-y-4">

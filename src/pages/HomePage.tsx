@@ -3,7 +3,7 @@ import About from "../components/About";
 import Portfolio from "../components/Portfolio";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
-import Review from "../components/Review";
+// import Review from "../components/Review";
 
 function HomePage() {
   return (
@@ -11,7 +11,7 @@ function HomePage() {
       <Hero />
       <About />
       <Portfolio />
-      <Review />
+      {/* <Review /> */}
       <Contact />
       <Footer />
     </div>

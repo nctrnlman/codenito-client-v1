@@ -1,23 +1,21 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faLinkedin,
-  faYoutube,
-  faInstagram,
-} from "@fortawesome/free-brands-svg-icons";
-import logo from "../assets/logo/logo-light.png";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import {
+//   faLinkedin,
+//   faYoutube,
+//   faInstagram,
+// } from "@fortawesome/free-brands-svg-icons";
+// import logo from "../assets/logo/logo-light.png";
+import logo from "../assets/logo/logoKape.png";
 
 function Footer() {
   return (
-    <div className="bg-[#151D20]">
-      <footer className="p-10  text-white">
+    // <div className="bg-[#151D20]">
+    <div className="bg-white">
+      <footer className="p-10  text-black">
         <div className="flex  flex-col md:flex-row md:justify-around mx-auto">
           <aside>
             <img src={logo} alt="" />
-            <p className="pt-4">
-              Codenito.
-              <br />
-              Providing reliable tech since 2023
-            </p>
+          
           </aside>
           <nav className="mt-4">
             <header className="text-lg font-semibold">Services</header>
@@ -30,10 +28,10 @@ function Footer() {
             <header className="text-lg font-semibold">Company</header>
             <a className="block py-1 hover:underline">About us</a>
             <a className="block py-1 hover:underline">Portfolio</a>
-            <a className="block py-1 hover:underline">Review</a>
+            {/* <a className="block py-1 hover:underline">Review</a> */}
             <a className="block py-1 hover:underline">Contact</a>
           </nav>
-          <nav className="mt-4 ">
+          {/* <nav className="mt-4 ">
             <header className="text-lg font-semibold ">Social</header>
             <div className="flex flex-row gap-4">
               <a
@@ -61,7 +59,7 @@ function Footer() {
                 <FontAwesomeIcon icon={faInstagram} />
               </a>
             </div>
-          </nav>
+          </nav> */}
         </div>
       </footer>
     </div>

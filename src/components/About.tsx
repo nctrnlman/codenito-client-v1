@@ -2,7 +2,8 @@ import webDev from "../assets/about/web-dev.jpg";
 import webMain from "../assets/about/web-main.jpg";
 import freelance from "../assets/about/freelance-dev.jpg";
 import uiux from "../assets/about/uixux.jpg";
-import logo from "../assets/logo/logo-dark.png";
+// import logo from "../assets/logo/logo-dark.png";
+import logoKape from "../assets/logo/logoKape.png";
 
 function About() {
   const cardData = [
@@ -46,8 +47,8 @@ function About() {
           <h1 className="md:text-5xl text-3xl  font-bold r mt-8 items-center  ">
             Welcome to
             <img
-              src={logo}
-              alt="Codenito Logo"
+              src={logoKape}
+              alt="Kape Logo"
               className="inline ml-4 md:w-[40%] w-[55%]"
             />
           </h1>
@@ -56,7 +57,7 @@ function About() {
             superior user experiences. Our experienced team ensures industry
             leadership and data security, creating a new digital landscape where
             code meets incognito. Explore the Possibilities with{" "}
-            <span className="font-bold">Codenito.</span>
+            <span className="font-bold">Kapesolusi.</span>
           </h4>
         </div>
 
